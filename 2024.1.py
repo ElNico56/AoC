@@ -3,8 +3,10 @@
 with open("2024.1.in", "r") as file:
     data = file.read()
 
-l = [int(line.split()[0]) for line in data.splitlines()]
-r = [int(line.split()[1]) for line in data.splitlines()]
+lines = data.splitlines()
+
+l = [int(line.split()[0]) for line in lines]
+r = [int(line.split()[1]) for line in lines]
 
 l.sort()
 r.sort()

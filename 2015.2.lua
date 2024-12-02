@@ -11,10 +11,10 @@ for line in input:gmatch"[^\n]+" do
 	w = tonumber(w)
 	h = tonumber(h)
 	l = tonumber(l)
-	a, b, c = l * w, w * h, h * l
+	a, b, c = w * h, h * l, l * w
 	p1 = p1 + 2 * a + 2 * b + 2 * c + math.min(a, b, c)
-	a, b, c = 2 * w, 2 * h, 2 * l
-	p2 = p2 + math.min(a + b, b + c, c + a) + w * h * l
+	a, b, c = w + h, h + l, l + w
+	p2 = p2 + math.min(2 * a, 2 * b, 2 * c) + w * h * l
 end
 
 print("A: "..p1)

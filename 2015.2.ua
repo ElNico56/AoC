@@ -1,4 +1,6 @@
 # AoC 2015 Day 2 #
 
 Data ← ([⊜(∩₃⋕°$"_x_x_")]⊸≠@\n&fras"2015.2.in")
-×⊸↻1Data # TODO: WIP
+
+$A/++/+⊃×₂/↧×⊸↻1Data
+$B/++/↧+⊸↻1⊃×₂/×Data

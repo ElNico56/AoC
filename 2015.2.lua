@@ -14,7 +14,7 @@ for line in input:gmatch"[^\n]+" do
 	a, b, c = l * w, w * h, h * l
 	p1 = p1 + 2 * a + 2 * b + 2 * c + math.min(a, b, c)
 	a, b, c = 2 * w, 2 * h, 2 * l
-	p2 = p2 + math.min(a + b, a + c, b + c) + w * h * l
+	p2 = p2 + math.min(a + b, b + c, c + a) + w * h * l
 end
 
 print("A: "..p1)

@@ -1,11 +1,12 @@
 -- AoC Solutions launcher --
 
 local LANGS = {
-	{name = "Uiua",       ext = "ua",  cmd = "uiua"},
-	{name = "Lua",        ext = "lua", cmd = "lua"},
-	{name = "Ruby",       ext = "rb",  cmd = "ruby"},
-	{name = "Python",     ext = "py",  cmd = "py"},
-	{name = "JavaScript", ext = "js",  cmd = "node"},
+	{name = "Uiua",       ext = "ua",   cmd = "uiua"},
+	{name = "Lua",        ext = "lua",  cmd = "lua"},
+	{name = "Ruby",       ext = "rb",   cmd = "ruby"},
+	{name = "Python",     ext = "py",   cmd = "py"},
+	{name = "JavaScript", ext = "js",   cmd = "node"},
+	{name = "Raku",       ext = "raku", cmd = "raku"},
 }
 
 print"Enter a year: 2015 .. 2024"

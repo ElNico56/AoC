@@ -1,10 +1,10 @@
-# AoC 2024 day 3
+# AoC 2024 day 3 #
 
 my $input = "2024.3.in".IO.slurp;
 
 my ($p1, $p2, $enabled) = (0, 0, True);
 
-for $input.match(/"do()"|"don't()"|"mul("\d+","\d+")"/, :global) -> $match {
+for $input.match(/"do()"|"don't()"|"mul("\d+","\d+")"/, :g) -> $match {
 	given $match.Str {
 		when "do()"    { $enabled = True }
 		when "don't()" { $enabled = False }

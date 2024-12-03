@@ -15,9 +15,7 @@ for i = 1, #input - 12 do
 		local a, b = str:match"^mul%((%d+),(%d+)%)"
 		a, b = tonumber(a), tonumber(b)
 		p1 = p1 + a * b
-		if enabled then
-			p2 = p2 + a * b
-		end
+		if enabled then p2 = p2 + a * b end
 	end
 end
 

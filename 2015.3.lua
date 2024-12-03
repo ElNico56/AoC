@@ -1,8 +1,6 @@
 -- AoC 2015 Day 3 --
 
-local file = assert(io.open("2015.3.in", "r"))
-local input = file:read"*a"
-file:close()
+local input = assert(io.open"2015.3.in"):read"*a"
 local homes
 
 

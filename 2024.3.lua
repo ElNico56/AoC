@@ -1,23 +1,25 @@
 -- AoC 2024 day 3 --
 
-local input = assert(io.open"2024.3.in"):read"*all"
--- local input = "xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))"
-
-local ans = 0
+local input = assert(io.open"2024.3.in"):read"*a"
 input = input..string.rep(" ", 12)
+
+local p1, p2 = 0, 0
 local enabled = true
 for i = 1, #input - 12 do
 	local str = input:sub(i, i + 12)
 	if str:match"^don't%(%)" then
 		enabled = false
-	end
-	if str:match"^do%(%)" then
+	elseif str:match"^do%(%)" then
 		enabled = true
-	end
-	if str:match"^mul%(%d+,%d+%)" and enabled then
+	elseif str:match"^mul%(%d+,%d+%)" then
 		local a, b = str:match"^mul%((%d+),(%d+)%)"
 		a, b = tonumber(a), tonumber(b)
-		ans = ans + a * b
+		p1 = p1 + a * b
+		if enabled then
+			p2 = p2 + a * b
+		end
 	end
 end
-print(ans)
+
+print("A: "..p1)
+print("B: "..p2)

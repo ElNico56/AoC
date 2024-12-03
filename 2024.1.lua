@@ -1,8 +1,6 @@
 -- AoC 2024 Day 1 --
 
-local file = assert(io.open("2024.1.in", "r"))
-local input = file:read"*a"
-file:close()
+local input = assert(io.open"2024.1.in"):read"*a"
 
 local p1, p2 = 0, 0
 local l, r = {}, {}

@@ -1,9 +1,7 @@
 -- AoC 2015 Day 4 --
 
 local md5 = require"md5"
-local file = assert(io.open("2015.4.in", "r"))
-local input = file:read"*a"
-file:close()
+local input = assert(io.open"2015.4.in"):read"*a"
 
 local p1 = 0
 while true do

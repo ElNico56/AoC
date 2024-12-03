@@ -1,8 +1,6 @@
 -- AoC 2015 Day 2 --
 
-local file = assert(io.open("2015.2.in", "r"))
-local input = file:read"*a"
-file:close()
+local input = assert(io.open"2015.2.in"):read"*a"
 
 local p1, p2 = 0, 0
 for line in input:gmatch"[^\n]+" do

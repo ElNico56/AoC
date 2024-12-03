@@ -1,6 +1,6 @@
 # AoC 2024 day 3
 
-my $input = "2024.3.in".IO.slurp ~ ' ' x 12;
+my $input = "2024.3.in".IO.slurp;
 
 my ($p1, $p2, $enabled) = (0, 0, True);
 

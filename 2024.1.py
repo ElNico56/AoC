@@ -5,15 +5,15 @@ with open("2024.1.in", "r") as file:
 
 lines = data.splitlines()
 
-l = [int(line.split()[0]) for line in lines]
-r = [int(line.split()[1]) for line in lines]
+L = [int(line.split()[0]) for line in lines]
+R = [int(line.split()[1]) for line in lines]
 
-l.sort()
-r.sort()
+L.sort()
+R.sort()
 
-p1 = sum(abs(a - b) for a, b in zip(l, r))
+p1 = sum(abs(l - r) for l, r in zip(L, R))
 
-p2 = sum(v * r.count(v) for v in l)
+p2 = sum(v * R.count(v) for v in L)
 
 print(f"A: {p1}")
 print(f"B: {p2}")

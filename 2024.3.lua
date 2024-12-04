@@ -6,11 +6,9 @@ local p1, p2 = 0, 0
 local enabled = true
 
 for command in input:gmatch"[%w']+%(%d*,?%d*%)" do
-	if command:match"do%(%)" then
-		enabled = true
-	elseif command:match"don't%(%)" then
-		enabled = false
-	elseif command:match"mul%(%d+,%d+%)" then
+	if command:match"do%(%)" then enabled = true end
+	if command:match"don't%(%)" then enabled = false end
+	if command:match"mul%(%d+,%d+%)" then
 		local a, b = command:match"mul%((%d+),(%d+)%)"
 		a, b = tonumber(a), tonumber(b)
 		p1 = p1 + a * b

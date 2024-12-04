@@ -12,15 +12,11 @@ end
 
 table.sort(l); table.sort(r)
 
-for i = 1, #l do
-	p1 = p1 + math.abs(l[i] - r[i])
-end
+for i = 1, #l do p1 = p1 + math.abs(l[i] - r[i]) end
 
 for _, v in ipairs(l) do
 	local count = 0
-	for _, w in ipairs(r) do
-		count = count + (v == w and 1 or 0)
-	end
+	for _, w in ipairs(r) do count = count + (v == w and 1 or 0) end
 	p2 = p2 + v * count
 end
 

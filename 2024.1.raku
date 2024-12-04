@@ -3,19 +3,17 @@
 my $input = "2024.1.in".IO.slurp;
 
 my ($p1, $p2) = (0, 0);
-my @l; my @r;
-for $input.match(/(\d+)\s+(\d+)/, :g) -> $match {
-	@l.push($match[0].Int);
-	@r.push($match[1].Int);
+my @L; my @R;
+for $input.match(/(\d+)\s+(\d+)/, :g) {
+	@L.push(.[0].Int);
+	@R.push(.[1].Int);
 }
 
-for zip(@l.sort, @r.sort) -> ($a, $b) {
-	$p1 += abs($a - $b);
-}
+$p1 = (@L.sort Z- @R.sort)>>.abs.sum;
 
-for @l -> $v {
+for @L -> $v {
 	my $count = 0;
-	for @r -> $w { $count++ if $v == $w; }
+	for @R -> $w { $count++ if $v == $w; }
 	$p2 += $v * $count;
 }
 

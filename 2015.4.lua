@@ -1,6 +1,7 @@
 -- AoC 2015 Day 4 --
 
 local input = assert(io.open"2015.4.in"):read"*a"
+
 local md5 = require"md5"
 
 local p1 = 0

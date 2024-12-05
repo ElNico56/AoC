@@ -1,6 +1,6 @@
 # AoC 2023 day 1 #
 
-Input ← (⊜□ ⊸≠@\n &fras"2023.1.in")
+Input ← (⊜□⊸≠@\n&fras"2023.1.in")
 
 $A/++×10≡◇(⊃⊢⊣▽⊸≠∞≡⍣⋕⋅∞)Input
 

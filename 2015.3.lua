@@ -3,7 +3,6 @@
 local input = assert(io.open"2015.3.in"):read"*a"
 local homes
 
-
 local x, y = 0, 0
 local p1 = 1
 homes = {[0] = {[0] = true}}

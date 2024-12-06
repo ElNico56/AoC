@@ -2,24 +2,39 @@
 
 local input = io.open"2019.2.in":read"*a"
 
-local mem = {}
-for num in input:gmatch"%d+" do mem[#mem+1] = tonumber(num) end
 
-mem[2] = 12; mem[3] = 2
-
-local pc = 1
-while true do
-	local opcode = mem[pc]
-	if opcode == 99 then break end
-	if opcode == 1 then
-		local a, b, c = mem[pc + 1], mem[pc + 2], mem[pc + 3]
-		mem[c + 1] = mem[a + 1] + mem[b + 1]
+local function run(program, noun, verb)
+	local mem, pc, i = {}, 0, 0
+	for num in program:gmatch"%d+" do
+		mem[i] = tonumber(num); i = i + 1
 	end
-	if opcode == 2 then
+	mem[1] = noun
+	mem[2] = verb
+	while true do
+		local opcode = mem[pc]
 		local a, b, c = mem[pc + 1], mem[pc + 2], mem[pc + 3]
-		mem[c + 1] = mem[a + 1] * mem[b + 1]
+		if opcode == 99 then
+			break
+		elseif opcode == 1 then
+			mem[c] = mem[a] + mem[b]
+			pc = pc + 4
+		elseif opcode == 2 then
+			mem[c] = mem[a] * mem[b]
+			pc = pc + 4
+		end
 	end
-	pc = pc + 4
+	return mem[0]
 end
 
-print("A: "..mem[1])
+local p1, p2 = run(input, 12, 2), 0
+for noun = 0, 99 do
+	for verb = 0, 99 do
+		if run(input, noun, verb) == 19690720 then
+			p2 = 100 * noun + verb
+			break
+		end
+	end
+end
+
+print("A: "..p1)
+print("B: "..p2)

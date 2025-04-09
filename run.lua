@@ -1,21 +1,16 @@
 -- AoC Solutions launcher --
 
 local LANGS = {
-	{name = "Uiua",       ext = "ua",   cmd = "uiua"},
-	{name = "Lua",        ext = "lua",  cmd = "lua"},
-	{name = "Ruby",       ext = "rb",   cmd = "ruby"},
-	{name = "Python",     ext = "py",   cmd = "py"},
-	{name = "JavaScript", ext = "js",   cmd = "node"},
-	{name = "Raku",       ext = "raku", cmd = "raku"},
-	{name = "C",          ext = "c",    cmd = "tcc -run"},
+	{name = "Uiua",   ext = "ua",   cmd = "uiua"},
+	{name = "Lua",    ext = "lua",  cmd = "lua"},
+	{name = "Python", ext = "py",   cmd = "py"},
+	{name = "Raku",   ext = "raku", cmd = "raku"},
 }
 
 local function by_problem()
-	print"Enter a year: 2015 .. 2024"
-	local year = io.read()
-
-	print"Enter a day: 1 .. 25"
-	local day = io.read()
+	print"Enter a problem: YYYY.DD"
+	io.write": "
+	local year, day = io.read():match"(%d+).(%d+)"
 
 	local solutions = {}
 	for _, lang in ipairs(LANGS) do
@@ -24,36 +19,13 @@ local function by_problem()
 		if file then
 			file:close()
 			table.insert(solutions, {
+				filename = filename,
 				lang = lang.name,
 				cmd = lang.cmd.." "..filename
 			})
 		end
 	end
-
-	-- No solutions found
-	if #solutions == 0 then
-		print"No solutions found"
-		return
-	end
-
-	-- Single solution found
-	if #solutions == 1 then
-		os.execute(solutions[1].cmd)
-		return
-	end
-
-	-- Multiple solutions found
-	print"Multiple solutions found"
-	print"Please select one:"
-	for i, sol in ipairs(solutions) do
-		print(i..". "..sol.lang)
-	end
-	local choice = tonumber(io.read())
-	if choice < 1 or choice > #solutions then
-		print"Invalid choice"
-		return
-	end
-	os.execute(solutions[choice].cmd)
+	return solutions
 end
 
 local function by_language()
@@ -61,6 +33,7 @@ local function by_language()
 	for i, lang in ipairs(LANGS) do
 		print(i..". "..lang.name)
 	end
+	io.write": "
 	local lang = LANGS[tonumber(io.read())]
 	local solutions = {}
 	for year = 2015, 2024 do
@@ -69,26 +42,38 @@ local function by_language()
 			local file = io.open(filename, "r")
 			if file then
 				file:close()
-				table.insert(solutions, filename)
+				table.insert(solutions, {
+					filename = filename,
+					lang = lang.name,
+					cmd = lang.cmd.." "..filename
+				})
 			end
 		end
 	end
+	return solutions
 end
 
 print"AoC Launcher"
-local valid = false
-while not valid do
+do
 	print"select by problem or by language"
 	print"1. by problem"
 	print"2. by language"
+	local solutions = {}
+	io.write": "
 	local choice = tonumber(io.read())
-	if choice == 1 then
-		by_problem()
-		valid = true
-	elseif choice == 2 then
-		by_language()
-		valid = true
-	else
-		print"Invalid choice"
+	if choice == 1 then solutions = by_problem() end
+	if choice == 2 then solutions = by_language() end
+	if #solutions == 0 then print"no solutions found" end
+	if #solutions == 1 then os.execute(solutions[1].cmd) end
+	if #solutions > 1 then
+		print"Select a solution"
+		for i, sol in ipairs(solutions) do
+			print(i..". "..sol.filename)
+		end
+		io.write": "
+		choice = tonumber(io.read())
+		if choice >= 1 and choice <= #solutions then
+			os.execute(solutions[choice].cmd)
+		end
 	end
 end
